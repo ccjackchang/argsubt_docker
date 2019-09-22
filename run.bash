@@ -87,6 +87,7 @@ docker run -it \
   -e QT_X11_NO_MITSHM=1 \
   -e XAUTHORITY=$XAUTH \
   -v "$XAUTH:$XAUTH" \
+  -v "/home/jack/subt_rl:/home/argsubt/subt_rl"\
   -v "/tmp/.X11-unix:/tmp/.X11-unix" \
   -v "/etc/localtime:/etc/localtime:ro" \
   -v "/dev/input:/dev/input" \

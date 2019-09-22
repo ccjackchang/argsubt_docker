@@ -158,10 +158,13 @@ RUN pip2 install --upgrade pip setuptools
 RUN pip2 install  \
     tensorflow-gpu \
     gym \
-    matplotlib 
+    matplotlib \
+    pandas
 ################################### SOURCE #####################################
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
-RUN hg clone https://bitbucket.org/osrf/subt /subt_ws \
+ARG username
+ARG password
+RUN hg clone https://${username}:${password}@bitbucket.org/arg-nctu/subt /subt_ws \
  && cd /subt_ws \
  && hg checkout gazebo9 \
  && mkdir -p ${HOME}/catkin_ws/src \
@@ -182,10 +185,11 @@ RUN mkdir -p ${HOME}/catkin_ws/src
 
 RUN cd ${HOME}/catkin_ws \
  && apt-get -o Acquire::ForceIPv4=true update \
+ && apt-get -o Acquire::ForceIPv4=true install -y vim nano gedit \
  && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash && rosdep update && rosdep install --as-root apt:false --from-paths src --ignore-src -r -y" \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
- && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash && catkin_make"
+ && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash && catkin_make install"
 
 RUN echo "source ~/catkin_ws/install/setup.bash" >> ${HOME}/.bashrc
 
