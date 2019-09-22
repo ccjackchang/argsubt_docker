@@ -10,8 +10,9 @@ $ cd build_docker
 ```
 $ ./argsubt_build.sh ${Bitbucket username} ${Bitbucket password}
 ```
-Please modify ${Bitbucket username} ${Bitbucket password} to your own Bitbucket account.    
-Example
+Please modify ${Bitbucket username} ${Bitbucket password} to your own Bitbucket account.  
+  
+Example:
 ```
 ./argsubt_build.sh ccjackchang 123456789
 ```
