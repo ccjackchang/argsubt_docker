@@ -1,6 +1,5 @@
 # ARGSubT-Docker
 This repository is a docker for ARGSubt.  
-
 ## How to Run
 There are two options for you to run ARGSubT.  
 
@@ -34,18 +33,31 @@ $ cd argsubt_docker/local/
 $ ./join.bash argsubt_ws
 ```
 If you change the image name, please modify [argsubt_ws] to your own name.  
+
 ## Option 2 : Pull from Docker Hub
-### Pull argnctu/subt
-```
-$ docker pull argnctu/subt:gym-subt
-```
-### Run docker
-```
-$ cd argsubt_docker/docker_hub/
-$ ./run.bash
-```
-### Open another terminal
+There are 2 versions for argnctu/subt  
+### Gazebo 9 version:
+
+#### Run docker
 ```
 $ cd argsubt_docker/docker_hub/
-$ ./join.bash
+$ ./gz9_run.bash
+```
+#### Open another terminal
+```
+$ cd argsubt_docker/docker_hub/
+$ ./gz9_join.bash
+```
+
+### ign version:
+
+#### Run docker
+```
+$ cd argsubt_docker/docker_hub/
+$ ./ign_run.bash
+```
+#### Open another terminal
+```
+$ cd argsubt_docker/docker_hub/
+$ ./ign_join.bash
 ```
