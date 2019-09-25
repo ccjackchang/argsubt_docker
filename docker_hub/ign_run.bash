@@ -87,14 +87,15 @@ docker run -it \
   -e QT_X11_NO_MITSHM=1 \
   -e XAUTHORITY=$XAUTH \
   -v "$XAUTH:$XAUTH" \
-  -v "/home/$USER/subt_rl:/home/argsubt/subt_rl"\
+  -v "/home/$USER/SubT_Virtual:/home/argsubt/SubT_Virtual"\
   -v "/tmp/.X11-unix:/tmp/.X11-unix" \
   -v "/etc/localtime:/etc/localtime:ro" \
   -v "/dev/input:/dev/input" \
+  --name argsubt \
   --network host \
   --rm \
   --privileged \
   --security-opt seccomp=unconfined \
   $DOCKER_OPTS \
-  argnctu/subt:gym-subt \
+  argnctu/subt:ign \
   bash

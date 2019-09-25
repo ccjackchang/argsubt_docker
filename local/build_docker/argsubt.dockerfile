@@ -185,13 +185,31 @@ RUN mkdir -p ${HOME}/catkin_ws/src
 
 RUN cd ${HOME}/catkin_ws \
  && apt-get -o Acquire::ForceIPv4=true update \
- && apt-get -o Acquire::ForceIPv4=true install -y vim nano gedit \
+ && apt-get -o Acquire::ForceIPv4=true install -y vim nano gedit ros-melodic-serial ros-melodic-soem ros-melodic-openslam-gmapping ros-melodic-geodesy ros-melodic-moveit-* ros-melodic-industrial-* libsuitesparse-dev ros-melodic-cartographer-* libsdl-image1.2-dev git \
  && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash && rosdep update && rosdep install --as-root apt:false --from-paths src --ignore-src -r -y" \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
  && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash && catkin_make install"
 
 RUN echo "source ~/catkin_ws/install/setup.bash" >> ${HOME}/.bashrc
+
+#################################### GTSAM ####################################
+
+RUN cd ${HOME}/ \
+ && git clone https://github.com/borglab/gtsam.git \
+ && cd gtsam/ \
+ && mkdir build \
+ && cd build \
+ && cmake .. \
+ && make install 
+
+#################################### ISAM ####################################
+
+RUN cd ${HOME}/ \
+ && git clone https://github.com/ori-drs/isam \
+ && cd isam/ \
+ && make \
+ && make install 
 
 ##################################### TAIL #####################################
 RUN chown -R ${NB_UID} ${HOME}/

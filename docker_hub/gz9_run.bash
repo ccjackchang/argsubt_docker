@@ -25,7 +25,7 @@
 # Recommended:
 #   A joystick mounted to /dev/input/js0 or /dev/input/js1
 
-IMG=$(basename $1)
+IMG=argnctu/subt:gym-subt
 ARGS=("$@")
 
 # Make sure processes in the container can connect to the x server
@@ -91,11 +91,11 @@ docker run -it \
   -v "/tmp/.X11-unix:/tmp/.X11-unix" \
   -v "/etc/localtime:/etc/localtime:ro" \
   -v "/dev/input:/dev/input" \
+  --name argsubt \
   --network host \
   --rm \
-  --name argsubt \
   --privileged \
   --security-opt seccomp=unconfined \
   $DOCKER_OPTS \
-  $IMG \
+  argnctu/subt:gz9 \
   bash
